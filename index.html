@@ -73,6 +73,17 @@
             maxZoom: 22,
             layers: [layers.bmaphidpi]
         });
+        
+        var heatmapMarker = L.geoJSON(window.heatmapMarker, {
+            pointToLayer: function(feature, latlng){
+                return L.marker(latlng);
+                }
+            })
+            .bindPopup( function (layer){ 
+                var popupContent = '<img src="heatmaps/' + layer.feature.properties.filename + '" width="600 px" />'
+                return popupContent;
+            }, {maxWidth: "auto",
+                autoPan: true,}).addTo(map);
 
         
         var layerControl = L.control.layers({
@@ -82,17 +93,12 @@
             "basemap.at - ORTHOPHOTO": layers.bmaporthofoto30cm,
             "OpenStreetMap": layers.osm,
 			"White Background": layers.white,
+        },
+        {
+            "Heatmaps": heatmapMarker,
         }).addTo(map);
 	
-        var heatmapMarker = L.geoJSON(window.heatmapMarker, {
-                pointToLayer: function(feature, latlng){
-                    return L.marker(latlng);
-                }
-            })
-            .bindPopup( function (layer){ 
-                var popupContent = '<img src="heatmaps/' + layer.feature.properties.filename + '" width="600 px" />'
-                return popupContent;
-            }, {maxWidth: "auto"}).addTo(map);
+
             
 		// add scale
         L.control.scale({
