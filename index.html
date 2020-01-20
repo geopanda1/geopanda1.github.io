@@ -110,6 +110,8 @@
             metric: true,
             imperial: false
         }).addTo(map);
+        console.log(heatmapMarker.getBounds())
+        map.fitBounds(heatmapMarker.getBounds())
 		
         </script>
 
