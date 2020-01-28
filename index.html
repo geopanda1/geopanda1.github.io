@@ -20,7 +20,7 @@
                 #map { position:absolute; top:0; bottom:0; width:100%; } /* full size */
                 .src {
                     font-size: 10pt;
-                }               
+                }
 
             </style>
 
@@ -83,9 +83,9 @@
                 }
             })
             .bindPopup( function (layer){ 
-                var popupContent = '<img src="heatmaps/' + layer.feature.properties.filename + '" width="600 px" />'
+                var popupContent = '<div><img src="heatmaps/' + layer.feature.properties.filename + '" width="600 px" /><img src="ttff/' + layer.feature.properties.filename + '" width="600 px" /></div>'
                 return popupContent;
-            }, {maxWidth: "auto",
+            }, {maxWidth: "1300 px",
                 autoPan: true,}).addTo(map);
 
         
